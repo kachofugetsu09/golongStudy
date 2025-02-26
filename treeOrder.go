@@ -322,3 +322,26 @@ func countNodes(root *TreeNode) int {
 	}
 	return countNodes(root.Left) + countNodes(root.Right) + 1
 }
+
+func isBalanced(root *TreeNode) bool {
+	h := getHeight(root)
+	if h == -1 {
+		return false
+	}
+	return true
+
+}
+func getHeight(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	leftH := getHeight(root.Left)
+	rightH := getHeight(root.Right)
+	if leftH == -1 || rightH == -1 {
+		return -1
+	}
+	if math.Abs(float64(leftH-rightH)) > 1 {
+		return -1
+	}
+	return max(leftH, rightH) + 1
+}
